@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form [formGroup]="orderForm" (ngSubmit)="OnSubmit()">
+                <div class="form-group">
+                    <label for="orderNo">Order No</label>
+                    <input type="text" formControlName="orderNo" class="form-control">
+                </div>
+                <div >
+                    <label for="customers">Customer</label>
+                    <select class="form-select" formControlName="customerId" >
+                            <option *ngFor="let item of customers" [value]="item.id" >{{item.name}}</option>
+                    </select>
+                </div>
+
+                <hr>
+                <div>
+                    <table class="table table-border">
+                        <thead>
+                            <th>Item</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let itemGroup of getControls();let i = index"
+                             formArrayName="itemGroup">
+                                <td>
+                                    <div >
+                                        <label for="itemId">Item</label>
+                                        <select class="form-select" formControlName="itemId" >
+                                                <option *ngFor="let item of items" [value]="item.id" >{{item.name}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div >
+                                        <label for="type">Type</label>
+                                        <select class="form-select" formControlName="typeId" >
+                                                <option *ngFor="let item of types" [value]="item.id" >{{item.name}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input type="text" formControlName="price" class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        
+                                      </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="addNewItem()">Add</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="code">Code</label>
+                    <input type="text" formControlName="code" class="form-control">
+                </div>
+                
+                <div class="form-check">
+                    <label for="active">Active</label>
+                    <input type="checkbox" formControlName="active" class="form-check-input">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
